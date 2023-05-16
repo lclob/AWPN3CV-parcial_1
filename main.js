@@ -17,7 +17,8 @@ buttonSearch.addEventListener('click', event => {
       console.log('data cruda:', data);
       const name = data.name;
       const temp = data.main.temp;
-      console.log(temp);
+      const lat = data.coord.lat;
+      const lon = data.coord.lon;
       document.querySelector(".card")?.remove();
       let div = document.createElement("div");
       div.classList.add("card");
@@ -26,6 +27,8 @@ buttonSearch.addEventListener('click', event => {
         <ul>
         <li>${name}</li>
         <li>${temp}°C</li>
+        <li>${lat}</li>
+        <li>${lon}</li>
         </ul>
       `;
       console.log(div);
