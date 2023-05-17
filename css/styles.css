@@ -1,22 +1,37 @@
-#main {
-    margin-top: 20px;
+body {
+  background-color: #DDDDDD;
+}
+.form-control, .form-control:active, .form-control:focus, .form-control:hover, .form-control:focus-visible {
+  background-color: #DDDDDD;
+  border-color: black;
+  outline: none;
+  box-shadow: none;
+}
+.btn-primary, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .btn-primary:focus-visible{
+  background-color: #CEE461;
+  border-color: black;
+  color: black;
+  outline: none;
+  box-shadow: none;
+}
+.card{
+  background-color: #DDDDDD;
+  border-color: black;
 }
 
-input#search {
-    height: 35px;
+.list-group-item{
+  background-color: #DDDDDD;
+  border-color: black;
 }
 
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    max-width: 500px;
-    margin: 0 auto;
-    width: 100%;
+.bg-primary{
+  background-color: #CEE461 !important;
+  border-color: black;
+  color: black;
+  outline: none;
+  box-shadow: none;
 }
 
-div#image {
-    display: flex;
-    justify-content: center;
+.card-title{
+  font-size: 1rem;
 }
