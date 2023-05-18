@@ -14,17 +14,7 @@ if (!localStorage.getItem("search_value")) {
   apiCall(value);
 }
 
-btn();
-function btn() {
-  buttonSearch.addEventListener('click', event => {
-    event.preventDefault();
-    value = inputElement.value;
-    localStorage.setItem(`search_value`, `${value}`)
-    apiCall(value);
-  });
-}
-
-// API weather
+// APIs
 function apiCall(value) {
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=${APIWheater}&units=metric`)
     .then(resp => {
@@ -32,9 +22,11 @@ function apiCall(value) {
     })
     .then(data => {
       resultElement.innerHTML = '';
-      placeInfo(data);
+      // weather
+      setInfo(data);
       let name = data.name;
       let coord = data.coord;
+      // maps
       map(name, coord);
       return name;
     })
@@ -48,7 +40,8 @@ function apiCall(value) {
         },
       });
 
-      const image = await res.json();
+      let image = await res.json();
+      // imagen
       setImage(image);
     })
     .catch(err => {
@@ -60,8 +53,19 @@ function apiCall(value) {
     })
 }
 
-// resultado API weather
-function placeInfo(data) {
+// search
+btn();
+function btn() {
+  buttonSearch.addEventListener('click', event => {
+    event.preventDefault();
+    value = inputElement.value;
+    localStorage.setItem(`search_value`, `${value}`)
+    apiCall(value);
+  });
+}
+
+// API weather
+function setInfo(data) {
   console.log('data cruda:', data);
 
   const
@@ -74,7 +78,8 @@ function placeInfo(data) {
     pa = data.main.pressure,
     wind = (data.wind.speed * 3.6).toFixed(1),
     lat = data.coord.lat,
-    lon = data.coord.lon;
+    lon = data.coord.lon
+  ;
 
   document.querySelector(".card")?.remove();
   let div = document.createElement("div");
@@ -82,10 +87,10 @@ function placeInfo(data) {
   resultElement.appendChild(div);
   div.innerHTML = `
     <div class="row mobile g-0">
-      <div class="col-md-6 img">
+      <div class="col-md-4 img">
       <img src="" class="img-fluid imagen w-100 rounded-start" alt="..." style="object-fit:cover"/>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-8">
         <div class="card-body">
           <h2 class="card-title badge bg-primary rounded-pill p-3">${name}</h2>
           <ul class="list-group">
@@ -110,7 +115,7 @@ function placeInfo(data) {
   `;
 };
 
-// resultado API maps
+// API maps
 function map(name, coord) {
   let map = document.querySelector('.map');
   let iframe = document.createElement('iframe');
