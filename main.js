@@ -20,7 +20,7 @@ function btn() {
     event.preventDefault();
     value = inputElement.value;
     localStorage.setItem(`search_value`, `${value}`)
-    btnClick(value);
+    apiCall(value);
   });
 }
 
