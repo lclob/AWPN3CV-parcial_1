@@ -59,11 +59,25 @@ btn();
 function btn() {
   buttonSearch.addEventListener('click', event => {
     event.preventDefault();
+    spinner(resultElement);
     value = inputElement.value;
     localStorage.setItem(`search_value`, `${value}`)
     apiCall(value);
   });
 }
+
+// spinner
+function spinner(resultado){
+  resultado.innerHTML = '';
+  let spinner = document.createElement('div');
+  spinner.classList.add('d-flex', 'justify-content-center', 'spinner');
+  spinner.innerHTML = `
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  `;
+  resultado.append(spinner);
+};
 
 // API weather
 function setInfo(data) {
@@ -97,7 +111,6 @@ function setInfo(data) {
   div.innerHTML = `
     <div class="row mobile g-0">
       <div class="col-md-4 img">
-      <img src="" class="img-fluid imagen w-100 rounded-start" alt="..." style="object-fit:cover"/>
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -123,6 +136,9 @@ function setInfo(data) {
         <div class="map"></div>
       </div>
   `;
+
+  let img = document.querySelector('.img');
+  spinner(img);
 };
 
 // API maps
@@ -136,10 +152,17 @@ function map(name, coord) {
 // imagen
 function setImage(image) {
   const photo = image.photos[0].src.large;
-  let imagen = document.querySelector('.imagen');
+
+  let img = document.querySelector('.img');
+  img.innerHTML = '';
+
+  let imagen = document.createElement('img');
+  imagen.classList.add('img-fluid', 'imagen', 'w-100', 'rounded-start');
   imagen.src = "";
   imagen.src = photo;
   imagen.alt = `imagen de ${inputElement.value}`;
+
+  img.append(imagen)
 }
 
 // salvavidas

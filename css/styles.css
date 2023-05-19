@@ -67,6 +67,15 @@ iframe{
   border-top: var(--bs-card-border-width) solid black;
 }
 
+#resultado{
+  min-height: calc(100vh - 170px);
+}
+
+.spinner{
+  min-height: 100%;
+  align-items: center;
+}
+
 @media screen and  (max-width:768px){
   .mobile div:nth-child(1){
     order: 2;
