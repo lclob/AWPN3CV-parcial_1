@@ -55,7 +55,6 @@ function apiCall(value) {
 }
 
 // search
-btn();
 function btn() {
   buttonSearch.addEventListener('click', event => {
     event.preventDefault();
@@ -63,6 +62,19 @@ function btn() {
     value = inputElement.value;
     localStorage.setItem(`search_value`, `${value}`)
     apiCall(value);
+  });
+
+}
+
+function btnKey() {
+  buttonSearch.addEventListener('keypress', event => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      spinner(resultElement);
+      value = inputElement.value;
+      localStorage.setItem(`search_value`, `${value}`)
+      apiCall(value);
+    }
   });
 }
 
@@ -174,3 +186,6 @@ function salvaVidas() {
   resultElement.innerHTML = "Lo siento, no hemos encontrado la ciudad que buscabas."
 }
 
+// funciones
+btn();
+btnKey();
