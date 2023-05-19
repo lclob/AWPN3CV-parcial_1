@@ -26,6 +26,7 @@ function apiCall(value) {
       setInfo(data);
       let name = data.name;
       let coord = data.coord;
+
       // maps
       map(name, coord);
       return name;
@@ -138,6 +139,7 @@ function setImage(image) {
   let imagen = document.querySelector('.imagen');
   imagen.src = "";
   imagen.src = photo;
+  imagen.alt = `imagen de ${inputElement.value}`;
 }
 
 // salvavidas
