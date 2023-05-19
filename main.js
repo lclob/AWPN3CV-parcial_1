@@ -78,8 +78,16 @@ function setInfo(data) {
     pa = data.main.pressure,
     wind = (data.wind.speed * 3.6).toFixed(1),
     lat = data.coord.lat,
-    lon = data.coord.lon
+    lon = data.coord.lon,
+    day = data.weather[0].icon.at(-1);
   ;
+
+  let dayname = "";
+  if(day == "d"){
+    dayname = "Día"
+  } else if(day == "n"){
+    dayname = "Noche"
+  }
 
   document.querySelector(".card")?.remove();
   let div = document.createElement("div");
@@ -94,12 +102,13 @@ function setInfo(data) {
         <div class="card-body">
           <h2 class="card-title badge bg-primary rounded-pill p-3">${name}</h2>
           <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">${dayname}</li>
             <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Temperatura: <span class="badge bg-primary rounded-pill p-2">${temp} °C</span></li>
             <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Latitud:<span class="badge bg-primary rounded-pill p-2">${lat}</span></li>
             <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Longitud: <span class="badge bg-primary rounded-pill p-2">${lon}</span></li>
             <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Temp. máxima: <span class="badge bg-primary rounded-pill p-2">${tempMax} °C</span></li>
             <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Temp. mínima: <span class="badge bg-primary rounded-pill p-2">${temMin} °C</span></li>
-            <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Humedad: <span class="badge bg-primary rounded-pill p-2">${humedad} %³.</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Humedad: <span class="badge bg-primary rounded-pill p-2">${humedad} %</span></li>
             <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Sensación Térmica: <span class="badge bg-primary rounded-pill p-2">${st} °C</span></li>
             <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Presión Atmosférica: <span class="badge bg-primary rounded-pill p-2">${pa} hPa</span></li>
             <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Viento: <span class="badge bg-primary rounded-pill p-2">${wind} km/h</span></li>
