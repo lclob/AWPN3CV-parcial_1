@@ -82,7 +82,7 @@ span{
 }
 
 .bg-s{
-  background-color: gray;
+  background-color: rgb(170, 170, 170);
   transform: scale(.9);
 }
 
@@ -104,4 +104,10 @@ span{
   .mobile div:nth-child(4){
     order: 4;
   }
+}
+
+@media screen and  (max-width:480px){
+  .temps{
+    flex-direction: column;
+  }  
 }
