@@ -56,7 +56,7 @@ iframe{
 
 .imagen{
   border-radius: var(--bs-card-border-radius);
-  height: 503px;
+  height: 413px;
   object-fit: cover;
 }
 
@@ -75,6 +75,20 @@ iframe{
 .spinner{
   min-height: 100%;
   align-items: center;
+}
+
+span{
+  color: black !important;
+}
+
+.bg-s{
+  background-color: gray;
+  transform: scale(.9);
+}
+
+.temps{
+  display: flex;
+  gap: .25rem;
 }
 
 @media screen and  (max-width:768px){

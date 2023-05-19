@@ -111,16 +111,19 @@ function setInfo(data) {
   div.innerHTML = `
     <div class="row mobile g-0">
       <div class="col-md-4 img">
-        
       </div>
       <div class="col-md-8">
         <div class="card-body">
           <h2 class="card-title badge bg-primary rounded-pill p-3">${name}</h2>
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">${dayname}</li>
-            <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Temperatura: <span class="badge bg-primary rounded-pill p-2">${temp} °C</span></li>
-            <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Temp. máxima: <span class="badge bg-primary rounded-pill p-2">${tempMax} °C</span></li>
-            <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Temp. mínima: <span class="badge bg-primary rounded-pill p-2">${temMin} °C</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Temperatura: 
+            <div class="temps">
+              <span class="badge bg-s rounded-pill p-2">${temMin} °C</span>
+              <span class="badge bg-primary rounded-pill p-2">${temp} °C</span>
+              <span class="badge bg-s rounded-pill p-2">${tempMax} °C</span>
+            </div>
+            </li>
             <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Humedad: <span class="badge bg-primary rounded-pill p-2">${humedad} %</span></li>
             <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Sensación Térmica: <span class="badge bg-primary rounded-pill p-2">${st} °C</span></li>
             <li class="list-group-item d-flex justify-content-between align-items-center fw-semibold">Presión Atmosférica: <span class="badge bg-primary rounded-pill p-2">${pa} hPa</span></li>
