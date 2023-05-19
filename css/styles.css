@@ -57,6 +57,7 @@ iframe{
 .imagen{
   border-radius: var(--bs-card-border-radius);
   height: 503px;
+  object-fit: cover;
 }
 
 .img{
