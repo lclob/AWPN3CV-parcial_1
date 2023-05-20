@@ -43,7 +43,7 @@ function apiCall(value) {
 
       let image = await res.json();
       // imagen
-      setImage(image);
+      slider(image);
     })
     .catch(err => {
       console.log(`Hubo un error: ${err}`);
@@ -61,7 +61,7 @@ function btn() {
     spinner(resultElement);
     value = inputElement.value;
 
-    if(!value){
+    if (!value) {
       salvaVidas();
     } else {
       localStorage.setItem(`search_value`, `${value}`)
@@ -78,7 +78,7 @@ function btnKey() {
       spinner(resultElement);
       value = inputElement.value;
 
-      if(!value){
+      if (!value) {
         salvaVidas();
       } else {
         localStorage.setItem(`search_value`, `${value}`)
@@ -89,7 +89,7 @@ function btnKey() {
 }
 
 // spinner
-function spinner(resultado){
+function spinner(resultado) {
   resultado.innerHTML = '';
   let spinner = document.createElement('div');
   spinner.classList.add('d-flex', 'justify-content-center', 'spinner');
@@ -120,9 +120,9 @@ function setInfo(data) {
   ;
 
   let dayname = "";
-  if(day == "d"){
+  if (day == "d") {
     dayname = "Día"
-  } else if(day == "n"){
+  } else if (day == "n") {
     dayname = "Noche"
   }
 
@@ -132,7 +132,9 @@ function setInfo(data) {
   resultElement.appendChild(div);
   div.innerHTML = `
     <div class="row mobile g-0">
-      <div class="col-md-4 img">
+      <div id="carouselExample" class="col-md-4 carousel slide carousel-fade">
+        <div class="carousel-inner img">
+        </div>
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -176,19 +178,41 @@ function map(name, coord) {
 };
 
 // imagen
-function setImage(image) {
-  const photo = image.photos[0].src.large;
+function slider(image) {
+  let photos = image.photos;
+  const photo = image.photos[0];
+  console.log(photos)
 
-  let img = document.querySelector('.img');
-  img.innerHTML = '';
+  let slider = document.querySelector('.img');
+  slider.innerHTML = '';
+  
+  photos.forEach(pic => {
+    let img = document.createElement('div');
 
-  let imagen = document.createElement('img');
-  imagen.classList.add('img-fluid', 'imagen', 'w-100', 'rounded-start');
-  imagen.src = "";
-  imagen.src = photo;
-  imagen.alt = `imagen de ${inputElement.value}`;
+    if (pic != photo) {
+      img.classList.add('carousel-item', 'img-secondary',);
+      img.innerHTML = `
+        <img src="${pic.src.large}" class="d-block w-100 imagen" alt="imagen de ${pic.alt}">
+      `;
+    } else {
+      img.classList.add('carousel-item', 'img-active', 'active');
+      img.innerHTML = `
+       <img src="${photo.src.large}" class="d-block w-100 imagen" alt="imagen de ${photo.alt}}">
+      `;
+    }
 
-  img.append(imagen)
+    slider.append(img);
+    slider.innerHTML += `
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    `;
+  });
 }
 
 // salvavidas
