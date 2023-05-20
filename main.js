@@ -67,7 +67,7 @@ function btn() {
 }
 
 function btnKey() {
-  buttonSearch.addEventListener('keypress', event => {
+  window.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       spinner(resultElement);
@@ -75,7 +75,7 @@ function btnKey() {
       localStorage.setItem(`search_value`, `${value}`)
       apiCall(value);
     }
-  });
+  })
 }
 
 // spinner
