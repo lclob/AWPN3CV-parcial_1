@@ -60,8 +60,13 @@ function btn() {
     event.preventDefault();
     spinner(resultElement);
     value = inputElement.value;
-    localStorage.setItem(`search_value`, `${value}`)
-    apiCall(value);
+
+    if(!value){
+      salvaVidas();
+    } else {
+      localStorage.setItem(`search_value`, `${value}`)
+      apiCall(value);
+    }
   });
 
 }
@@ -72,8 +77,13 @@ function btnKey() {
       event.preventDefault();
       spinner(resultElement);
       value = inputElement.value;
-      localStorage.setItem(`search_value`, `${value}`)
-      apiCall(value);
+
+      if(!value){
+        salvaVidas();
+      } else {
+        localStorage.setItem(`search_value`, `${value}`)
+        apiCall(value);
+      }
     }
   })
 }
@@ -183,7 +193,7 @@ function setImage(image) {
 
 // salvavidas
 function salvaVidas() {
-  resultElement.innerHTML = "Lo siento, no hemos encontrado la ciudad que buscabas."
+  resultElement.innerHTML = "Lo siento, no hemos encontrado el lugar que buscabas."
 }
 
 // funciones
