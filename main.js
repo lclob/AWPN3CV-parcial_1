@@ -60,19 +60,19 @@ function btn() {
     event.preventDefault();
     spinner(resultElement);
     value = inputElement.value;
-    localStorage.setItem("search_value", JSON.stringify(value));
+    localStorage.setItem(`search_value`, `${value}`)
     apiCall(value);
   });
 
 }
 
 function btnKey() {
-  window.addEventListener('keydown', (event) => {
+  inputElement.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       spinner(resultElement);
       value = inputElement.value;
-      localStorage.setItem("search_value", JSON.stringify(value));
+      localStorage.setItem(`search_value`, `${value}`)
       apiCall(value);
     }
   })
