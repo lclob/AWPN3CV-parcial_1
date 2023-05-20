@@ -60,7 +60,7 @@ function btn() {
     event.preventDefault();
     spinner(resultElement);
     value = inputElement.value;
-    localStorage.setItem(`search_value`, `${value}`)
+    localStorage.setItem("search_value", JSON.stringify(value));
     apiCall(value);
   });
 
@@ -72,7 +72,7 @@ function btnKey() {
       event.preventDefault();
       spinner(resultElement);
       value = inputElement.value;
-      localStorage.setItem(`search_value`, `${value}`)
+      localStorage.setItem("search_value", JSON.stringify(value));
       apiCall(value);
     }
   })
